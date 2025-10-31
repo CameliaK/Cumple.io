@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Feliz Cumple, Bro! 🎉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: #121826;
+      --ink: #e6eefc;
+      --ink-soft: #b8c2d6;
+      --accent: #8b5cf6; /* morado */
+      --accent-2: #22d3ee; /* cian */
+      --ring: rgba(139,92,246,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(34,211,238,0.16), transparent 50%),
+                  radial-gradient(900px 700px at 10% 120%, rgba(139,92,246,0.16), transparent 50%),
+                  var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      display:grid;gap:12px;place-items:center;text-align:center;margin:12px 0 24px;
+    }
+    .badge{
+      display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);color:var(--ink-soft);font-size:.9rem
+    }
+    h1{font-size:clamp(2rem,4vw,3rem);margin:4px 0 8px;font-weight:800;letter-spacing:.2px}
+    .sub{color:var(--ink-soft);max-width:60ch}
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;padding:20px;box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      backdrop-filter: blur(6px);
+    }
+    .grid{
+      display:grid;gap:16px
+    }
+    @media(min-width:768px){
+      .grid.cols-2{grid-template-columns:1.2fr .8fr}
+      .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    }
+
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#051018;border:none;border-radius:999px;padding:12px 18px;font-weight:700;text-decoration:none;
+      box-shadow:0 10px 24px rgba(34,211,238,.18);transition:.2s transform, .2s box-shadow
+    }
+    .cta:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(34,211,238,.24)}
+
+    /* Mensaje principal */
+    .message{font-size:1.05rem}
+    .quote{font-weight:600;font-size:1.15rem;border-left:4px solid var(--accent);padding-left:12px;margin:10px 0;color:#e9f2ff}
+
+    /* Galería */
+    .gallery{display:grid;gap:10px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:720px){.gallery{grid-template-columns:repeat(4,1fr)}}
+    .shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+    .shot img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+    .shot::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 0 rgba(255,255,255,0);transition:.25s}
+    .shot:hover::after{box-shadow:inset 0 0 0 3px var(--ring)}
+
+    /* Video */
+    .video-wrap{position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    footer{margin:26px 0 10px;text-align:center;color:var(--ink-soft);font-size:.95rem}
+
+    /* Confetti simple (CSS-only floating dots) */
+    .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+    .dot{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.85;animation:fall linear infinite}
+    @keyframes fall{0%{transform:translateY(-10%) rotate(0)}100%{transform:translateY(110vh) rotate(720deg)}}
+  </style>
+</head>
+<body>
+  <!-- Confetti decorativo -->
+  <div class="confetti" aria-hidden="true" id="confetti"></div>
+
+  <div class="wrap">
+    <header>
+      <span class="badge">🎂  Es tu día, hermano ninja</span>
+      <h1>¡Feliz Cumpleaños, <span id="name-slot">Bollo</span>! 🥳</h1>
+      <p class="sub">Que este año te traiga misiones S-rank, energía infinita, mucha paz y felicidad. Aquí va un pequeño detalle.</p>
+      <a class="cta" href="#video">▶️ Ver video de felicitación</a>
+    </header>
+
+    <section class="grid cols-2" aria-label="Mensaje y portada">
+      <article class="card message">
+        <h2 style="margin-top:0">Mensaje</h2>
+        <p>
+          Amiguito, gracias por estar siempre y no olvidarte de mi, eres una gran persona con un enorme corazón, tqm y espero nunca dejar de ser tu amigo.
+        </p>
+        <p class="quote">“A veces, tienes que hacer lo que está bien, incluso si duele.” — Itachi</p>
+        <p>
+          (Se supone que los de la foto somos nosotro pero chat no le supo nada)
+        </p>
+      </article>
+      <aside class="card" style="display:grid;place-items:center">
+        <!-- Imagen de portada (puedes cambiar la URL) -->
+        <!-- SUGERENCIA: reemplaza por una imagen que combine a Itachi y Kakashi o una tuya con él -->
+        <img src="ChatGPT Image Oct 31, 2025, 11_51_51 AM.png" alt="Fondo estilizado con tema ninja" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:16/9">
+      </aside>
+    </section>
+
+    <section id="video" class="card" style="margin-top:18px" aria-label="Video de YouTube">
+      <h2 style="margin-top:0">Como debe de ser, las debidas mañanitas</h2>
+      <p class="sub">Uno? O dos? A lo mejor son tres...</p>
+      <div class="video-wrap">
+        <!-- Reemplaza el src con tu video preferido: usa el formato embed, ejemplo: https://www.youtube.com/embed/VIDEO_ID -->
+        <iframe src="Cepillin - Las Mañanitas ( Video Original ).mp4" title="Video de cumpleaños" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px" aria-label="Galería de cosas que le gustan">
+      <h2 style="margin-top:0">Fotos que reconoces</h2>
+      <p class="sub">Porque hay -1 fotos juntos</p>
+      <div class="gallery">
+        <!-- Reemplaza los src por tus imágenes. Sugerencia: guarda los archivos en la misma carpeta y usa rutas relativas. -->
+        <!-- NOTA LEGAL: usa imágenes libres de derechos o con permiso. -->
+        <figure class="shot"><img src="ctulu.webp"/></figure>
+        <figure class="shot"><img src="espinoza.avif" alt="Cielo nocturno con energía épica"/></figure>
+        <figure class="shot"><img src="mini.webp" alt="Sombras y luces, estilo Uchiha"/></figure>
+        <figure class="shot"><img src="buena onda.jpg"/></figure>
+        <!-- Puedes duplicar <figure> para más imágenes -->
+      </div>
+    </section>
+
+    <footer>
+      Hecho con ❤️ + chakra. (Te hice una pagina porque alguna vez alguien me dijo: "Un mensaje te lo manda cualquiera") buoooop — <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    // Personaliza el nombre fácilmente editando este valor o leyendo de la URL (?name=TuAmigo)
+    const params = new URLSearchParams(location.search);
+    const friendName = params.get('name') || 'Bollo';
+    document.getElementById('name-slot').textContent = friendName;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Confetti minimalista (CSS-only + JS para crear puntitos)
+    const colors = ['#8b5cf6','#22d3ee','#f472b6','#fbbf24','#34d399'];
+    const $c = document.getElementById('confetti');
+    const N = 80; // cantidad de piezas
+    for(let i=0;i<N;i++){
+      const d = document.createElement('span');
+      d.className = 'dot';
+      d.style.left = Math.random()*100 + 'vw';
+      d.style.top = (-10 - Math.random()*50) + 'px';
+      const size = 6 + Math.random()*10;
+      d.style.width = d.style.height = size + 'px';
+      d.style.background = colors[Math.floor(Math.random()*colors.length)];
+      d.style.animationDuration = (6 + Math.random()*6) + 's';
+      d.style.animationDelay = (Math.random()*3) + 's';
+      d.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,.3))';
+      $c.appendChild(d);
+    }
+  </script>
+</body>
+</html>
